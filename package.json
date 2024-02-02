@@ -1,0 +1,15 @@
+{
+  "name": "namaste-react-2.0",
+  "version": "1.0.0",
+  "description": "Learning react",
+  "scripts": {
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html",
+    "test": "jest"
+  },
+  "author": "Haseeb",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
