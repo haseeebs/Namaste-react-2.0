@@ -1,22 +1,34 @@
+import React, { useState } from "react";
 import { restaurants } from "../../data";
 import RestaurantCard from "./RestaurantCard";
 
 const Body = () => {
-    return (
-        <div className="body">
+  const [listOfRestaurants, setListOfRestaurants] = useState(restaurants);
 
-            <div className="search"></div>
+  const handleFilterTopRated = () => {
+    const filteredList = listOfRestaurants.filter(
+      (restaurant) => restaurant.info.avgRating > 4
+    );
+    setListOfRestaurants(filteredList);
+  };
 
-            <div className="restaurant-container">
-                {
-                    restaurants.map((restaurant) => (
-                        <RestaurantCard key={restaurant.info.id} {...restaurant.info} />
-                    ))
-                }
-            </div>
+  return (
+    <div className="body">
+      <div className="search"></div>
 
-        </div>
-    )
+      <div className="filter">
+        <button className="filter-btn" onClick={handleFilterTopRated}>
+          Top Rated Restaurants
+        </button>
+      </div>
+
+      <div className="restaurant-container">
+        {listOfRestaurants.map((restaurant) => (
+          <RestaurantCard key={restaurant.info.id} {...restaurant.info} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Body;
