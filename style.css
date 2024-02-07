@@ -20,7 +20,6 @@ body {
   border: 1px solid black;
 
   & .logo-container {
-
   }
 
   & .nav-items ul {
@@ -34,36 +33,49 @@ body {
 }
 
 .body {
-    & .search {
+  & .search {
+  }
 
+  & .filter {
+    & .filter-btn {
+      margin-top: 30px;
+      margin-left: 40px;
     }
+  }
 
-    & .restaurant-container {
-        display: flex;
-        flex-wrap: wrap;
-        height:1300px;
-        
-        & .restaurant-card {
-            height: 150px;
-            width: 250px;
-            margin: 5px;
+  & .restaurant-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px;
 
-            & .restaurant-image {
-                height: 100%;
-                width: 100%;
-                border-radius: 20px;
-                object-fit: cover;
-            }
+    & .restaurant-card {
+      height: 100%;
+      width: 300px;
+      margin: 10px;
 
-            & .details {
-                padding: 10px;
+      & .restaurant-image {
+        height: 200px;
+        width: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+      }
 
-                & h4 {
-                    margin-top: 15px;
-                    margin-bottom: 10px;
-                }
-            }
+      & .details {
+        padding: 10px;
+
+        & h4 {
+          margin-top: 15px;
+          margin-bottom: 10px;
         }
-
+      }
     }
+  }
+}
+
+.buttons {
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 0.5px solid gray;
+  border-radius: 15px;
+  padding: 15px;
 }
