@@ -84,7 +84,7 @@ body {
         transition: transform 0.2s ease-in-out;
 
         &:hover {
-          transform: scale(1.03); /* Scale up on hover */
+          transform: scale(0.98); /* Scale up on hover */
         }
       }
 

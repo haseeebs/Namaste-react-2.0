@@ -15,12 +15,14 @@ const Body = () => {
   }, [])
 
   const fetchingData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
 
-    const restaurants = json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
-    setListOfRestaurants(restaurants);
-    setFilteredRestaurants(restaurants);
+    const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    const restaurants2 = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
+    setListOfRestaurants([...restaurants , ...restaurants2]);
+    setFilteredRestaurants([...restaurants , ...restaurants2]);
   }
 
   const handleFilterTopRated = () => {
@@ -31,10 +33,10 @@ const Body = () => {
   };
 
   const loadMoreRestaurants = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json = await data.json();
 
-    const newRestaurants = json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+    const newRestaurants = json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setFilteredRestaurants(prevRestaurants => [...prevRestaurants, ...newRestaurants]);
     setShowMore(true);
   };
