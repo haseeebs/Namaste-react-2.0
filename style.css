@@ -33,13 +33,35 @@ body {
 }
 
 .body {
-  & .search {
-  }
-
   & .filter {
-    & .filter-btn {
-      margin-top: 30px;
-      margin-left: 40px;
+    display: flex;
+    padding: 25px 0 0 50px;
+
+    & .search {
+      display: flex;
+      align-items: center;
+
+      & .search-box {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      & .search-button {
+        color: white;
+        background-color: #fd9f13;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-right: 15px;
+
+        &:hover {
+          background-color: #ff8911; /* Green background color */
+        }
+      }
     }
   }
 
@@ -53,16 +75,15 @@ body {
       width: 300px;
       margin: 10px;
       cursor: pointer;
-      
-      
+            
       & .restaurant-image {
         height: 200px;
         width: 100%;
         border-radius: 20px;
         object-fit: cover;
         transition: transform 0.2s ease-in-out;
-        
-        &:hover{
+
+        &:hover {
           transform: scale(1.03); /* Scale up on hover */
         }
       }
@@ -80,9 +101,21 @@ body {
 }
 
 .buttons {
+  color: white;
+  background-color: #fd9f13;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  background-color: whitesmoke;
-  border: 0.5px solid gray;
-  border-radius: 15px;
-  padding: 15px;
+  transition: background-color 0.3s ease;
+  margin-right: 15px;
+
+  &:hover {
+    background-color: #ff8911;
+  }
+  
+  &:disabled{
+    background-color: #ffa347;
+    cursor: not-allowed;
+  }
 }
