@@ -11,8 +11,33 @@ body {
   height: 100%;
   width: 100%;
 
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
+  }
+
+  & a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.buttons {
+  color: white;
+  background-color: #fd9f13;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 15px;
+
+  &:hover {
+    background-color: #ff8911;
+  }
+
+  &:disabled {
+    background-color: #ffa347;
+    cursor: not-allowed;
   }
 }
 
@@ -105,22 +130,94 @@ body {
   }
 }
 
-.buttons {
-  color: white;
-  background-color: #fd9f13;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 15px;
+.restaurant {
+  display: flex;
+  flex-direction: column;
 
-  &:hover {
-    background-color: #ff8911;
+  & .restaurant-details {
+    height: 150px;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 30px;
+    margin: auto;
+    border-bottom: 2px solid #b7b7b7;
+
+    & .first {
+      & h2 {
+        margin-bottom: 8px;
+      }
+      & p {
+        color: rgba(40, 44, 63, 0.709);
+      }
+    }
+
+    & .second {
+      height: 100%;
+      border: 1px solid #b7b7b7;
+
+      & .star {
+        display: flex;
+        justify-content: space-around;
+        font-size: large;
+        color: green;
+        padding: 8px;
+        align-items: center;
+        border-bottom: 1px solid #b7b7b7;
+      }
+
+      & .rating {
+        font-size: small;
+        padding: 15px;
+      }
+    }
   }
-  
-  &:disabled{
-    background-color: #ffa347;
-    cursor: not-allowed;
+
+  & .restaurant-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    & .item {
+      display: flex;
+      align-items: center;
+      width: 60%;
+      padding: 35px 50px;
+      border-bottom: 1px solid #d3d3d3;
+
+      & .info {
+        width: 75%;
+        /* font-size: 1rem; */
+
+        & p:first-child {
+          margin-bottom: 10px;
+        }
+        & p:nth-child(3) {
+          color: rgba(40, 44, 63, 0.45);
+          margin-top: 15px;
+        }
+      }
+
+      & .image {
+        width: 25%;
+
+        & img {
+          height: 100px;
+          width: 120px;
+          background-color: lightblue;
+          object-fit: cover;
+          margin-left: 50px;
+          border-radius: 15px;
+        }
+
+        & .dummy-image {
+          height: 100px;
+          width: 120px;
+          background-color: lightgray; /* Change this to the color you want for the dummy box */
+          margin-left: 50px;
+          border-radius: 15px;
+        }
+      }
+    }
   }
 }

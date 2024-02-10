@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./shimmerUi/shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
 
@@ -21,9 +22,9 @@ const Body = () => {
     
     const filteredRestaurants1 = restaurants1.filter(newRestaurant => !restaurants2.some(existingRestaurant => existingRestaurant.info.id === newRestaurant.info.id));
     const filteredRestaurants2 = restaurants1.filter(newRestaurant => restaurants2.some(existingRestaurant => existingRestaurant.info.id === newRestaurant.info.id));
-    
-    setListOfRestaurants([...filteredRestaurants1 , ...filteredRestaurants2]);
-    setFilteredRestaurants([...filteredRestaurants1 , ...filteredRestaurants2]);
+
+    setListOfRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
+    setFilteredRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
   }
 
   const handleFilterTopRated = () => {
@@ -69,9 +70,11 @@ const Body = () => {
 
       <div className="restaurant-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} {...restaurant.info} />
+          <Link to={`/restaurant/${restaurant.info.id}`} key={restaurant.info.id}>
+            <RestaurantCard {...restaurant.info} />
+          </Link>
         ))}
-        </div>
+      </div>
     </div>
   );
 };
