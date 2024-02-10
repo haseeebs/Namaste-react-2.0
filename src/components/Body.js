@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./shimmerUi/shimmer";
 import { Link } from "react-router-dom";
+import { RESTAURANTS_API } from "../utils/constant";
 
 const Body = () => {
 
@@ -14,7 +15,8 @@ const Body = () => {
   }, [])
 
   const fetchingData = async () => {
-    const data = await fetch("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    try {
+      const data = await fetch(RESTAURANTS_API);
     const json = await data.json();
 
     const restaurants1 = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -25,6 +27,10 @@ const Body = () => {
 
     setListOfRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
     setFilteredRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
+    
+  } catch (error) {
+    console.error('Error while fetching restaurants data...' , error);
+  }
   }
 
   const handleFilterTopRated = () => {

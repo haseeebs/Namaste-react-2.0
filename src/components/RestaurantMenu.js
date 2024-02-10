@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import { MENU_API, MENU_ITEM_IMG } from "../utils/constant";
 import Shimmer from "./shimmerUi/shimmer";
 
 
@@ -14,10 +15,14 @@ const RestaurantMenu = () => {
     }, [])
 
     const fetchRestaurantData = async () => {
-        const data = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.0759837&lng=72.8776559&restaurantId=${restaurantId}`)
-        const json = await data.json();
+        try {
+            const data = await fetch(`${MENU_API}${restaurantId}`)
+            const json = await data.json();
 
-        setRestaurantData(json);
+            setRestaurantData(json);
+        } catch (error) {
+            console.error('Error while fetching restaurant menu data...' , error);
+        }
     }
 
     if (restaurantData === null) return <Shimmer />
@@ -48,7 +53,7 @@ const RestaurantMenu = () => {
 
             <div className="restaurant-menu">
                 {menuInfo.map(item => (
-                    <div className="item" key={id}>
+                    <div className="item" key={item.card.info.id}>
 
                         <div className="info">
                             <p><strong>{item.card.info.name}</strong></p>
@@ -58,7 +63,7 @@ const RestaurantMenu = () => {
 
                         <div className="image">
                             {item.card.info.imageId ? (
-                                <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${item.card.info.imageId}`} alt="item image" />
+                                <img src={`${MENU_ITEM_IMG}${item.card.info.imageId}`} alt="item image" />
                             ) : (
                                 <div className="dummy-image"></div>
                             )}
