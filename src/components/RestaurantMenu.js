@@ -21,17 +21,26 @@ const RestaurantMenu = () => {
 
             setRestaurantData(json);
         } catch (error) {
-            console.error('Error while fetching restaurant menu data...' , error);
+            console.error('Error while fetching restaurant menu data...', error);
         }
     }
 
     if (restaurantData === null) return <Shimmer />
 
-    const { id, name, costForTwoMessage, cuisines, avgRating, totalRatingsString } = restaurantData?.data?.cards[0]?.card?.card?.info;
-    const menuInfo = restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
+    const { name, costForTwoMessage, cuisines, avgRating, totalRatingsString } = restaurantData?.data?.cards[0]?.card?.card?.info;
+
+    const menuInfo1 = restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
+    const menuInfo2 = restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
+
+    const menuInfo = menuInfo1 || menuInfo2;
+
+    if (menuInfo1 && menuInfo2) {
+        menuInfo.push(...menuInfo2)
+    };
 
     return (
         <div className="restaurant">
+
             <div className="restaurant-details">
 
                 <div className="first">
@@ -62,6 +71,7 @@ const RestaurantMenu = () => {
                         </div>
 
                         <div className="image">
+
                             {item.card.info.imageId ? (
                                 <img src={`${MENU_ITEM_IMG}${item.card.info.imageId}`} alt="item image" />
                             ) : (
