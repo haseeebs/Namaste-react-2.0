@@ -1,29 +1,13 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { MENU_API, MENU_ITEM_IMG } from "../utils/constant";
+import { MENU_ITEM_IMG } from "../utils/constant";
 import Shimmer from "./shimmerUi/shimmer";
-
+import useMenuData from "../utils/useMenuData";
 
 const RestaurantMenu = () => {
 
     const { restaurantId } = useParams();
 
-    const [restaurantData, setRestaurantData] = useState(null);
-
-    useEffect(() => {
-        fetchRestaurantData();
-    }, [])
-
-    const fetchRestaurantData = async () => {
-        try {
-            const data = await fetch(`${MENU_API}${restaurantId}`)
-            const json = await data.json();
-
-            setRestaurantData(json);
-        } catch (error) {
-            console.error('Error while fetching restaurant menu data...', error);
-        }
-    }
+    const restaurantData = useMenuData(restaurantId);
 
     if (restaurantData === null) return <Shimmer />
 
@@ -32,11 +16,21 @@ const RestaurantMenu = () => {
     const menuInfo1 = restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
     const menuInfo2 = restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
 
-    const menuInfo = menuInfo1 || menuInfo2;
+    // console.log(menuInfo1 ? ('1st is here') : ('1st is not here'));
+    // console.log(menuInfo2 ? ('2nd is here') : ('2nd is not here'));
+    // console.log(menuInfo1);
+    // console.log(menuInfo2);
+
+    let menuInfo = menuInfo1 || menuInfo2;
 
     if (menuInfo1 && menuInfo2) {
-        menuInfo.push(...menuInfo2)
-    };
+        // Filter out items with the same restaurant ID
+        const uniqueMenuInfo2 = menuInfo2.filter(sameRestaurants =>
+            menuInfo1.every(restaurant => restaurant.card.info.id !== sameRestaurants.card.info.id)
+        );
+
+        menuInfo = [...menuInfo, ...uniqueMenuInfo2];
+    }
 
     return (
         <div className="restaurant">
