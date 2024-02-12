@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./shimmerUi/shimmer";
 import { Link } from "react-router-dom";
 import { RESTAURANTS_API } from "../utils/constant";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
 
@@ -17,20 +18,20 @@ const Body = () => {
   const fetchingData = async () => {
     try {
       const data = await fetch(RESTAURANTS_API);
-    const json = await data.json();
+      const json = await data.json();
 
-    const restaurants1 = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    const restaurants2 = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    
-    const filteredRestaurants1 = restaurants1.filter(newRestaurant => !restaurants2.some(existingRestaurant => existingRestaurant.info.id === newRestaurant.info.id));
-    const filteredRestaurants2 = restaurants1.filter(newRestaurant => restaurants2.some(existingRestaurant => existingRestaurant.info.id === newRestaurant.info.id));
+      const restaurants1 = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      const restaurants2 = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-    setListOfRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
-    setFilteredRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
-    
-  } catch (error) {
-    console.error('Error while fetching restaurants data...' , error);
-  }
+      const filteredRestaurants1 = restaurants1.filter(newRestaurant => !restaurants2.some(existingRestaurant => existingRestaurant.info.id === newRestaurant.info.id));
+      const filteredRestaurants2 = restaurants1.filter(newRestaurant => restaurants2.some(existingRestaurant => existingRestaurant.info.id === newRestaurant.info.id));
+
+      setListOfRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
+      setFilteredRestaurants([...filteredRestaurants1, ...filteredRestaurants2]);
+
+    } catch (error) {
+      console.error('Error while fetching restaurants data...', error);
+    }
   }
 
   const handleFilterTopRated = () => {
@@ -47,6 +48,10 @@ const Body = () => {
 
     setFilteredRestaurants(filteredList);
   }
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) return <div className="offline">You are Offline please check your connection and try again</div>
 
   if (listOfRestaurants.length === 0) {
     return <Shimmer />

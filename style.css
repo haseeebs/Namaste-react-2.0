@@ -221,3 +221,11 @@ body {
     }
   }
 }
+
+.offline {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+  font-family: cursive;
+}
