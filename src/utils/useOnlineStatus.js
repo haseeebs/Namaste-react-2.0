@@ -2,11 +2,23 @@ import { useEffect, useState } from "react"
 
 const useOnlineStatus = () => {
     const [onlineStatus, setOnlineStatus] = useState(true);
-    console.log('riunning');
-    useEffect(() => {
 
-        window.addEventListener('online', () => setOnlineStatus(true));
-        window.addEventListener('offline', () => setOnlineStatus(false));
+    const handleOnline = () => {
+        setOnlineStatus(true);
+    }
+
+    const handleOffline = () => {
+        setOnlineStatus(false);
+    }
+
+    useEffect(() => {
+        window.addEventListener('online', handleOnline);
+        window.addEventListener('offline', handleOffline);
+
+        return () => {
+            window.removeEventListener('online', handleOnline);
+            window.removeEventListener('offline', handleOffline);
+        }
 
     }, []);
 

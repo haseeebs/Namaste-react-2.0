@@ -2,12 +2,17 @@ import { useParams } from "react-router-dom"
 import { MENU_ITEM_IMG } from "../utils/constant";
 import Shimmer from "./shimmerUi/shimmer";
 import useMenuData from "../utils/useMenuData";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const RestaurantMenu = () => {
 
     const { restaurantId } = useParams();
 
     const restaurantData = useMenuData(restaurantId);
+
+    const onlineStatus = useOnlineStatus();
+
+    if (onlineStatus === false) return <div className="offline">You are Offline please check your connection and try again</div>
 
     if (restaurantData === null) return <Shimmer />
 
