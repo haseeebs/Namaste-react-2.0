@@ -222,6 +222,37 @@ body {
   }
 }
 
+.instamart-container {
+  padding: 50px;
+  
+  & h3 {
+    margin-left: 5rem;
+    margin-bottom: 35px;
+  }
+  
+  & .categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+
+    & .grocery-item {
+      text-align: center;
+      
+      & p {
+        padding: 12px;
+      }
+    }
+  }
+}
+
+.instamart-menu {
+  font-size: 20px;
+  text-align: center;
+  padding: 80px;
+  font-family:  monospace;
+}
+
 .offline {
   font-size: 25px;
   display: flex;
