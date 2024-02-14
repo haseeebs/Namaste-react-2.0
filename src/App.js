@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Body from './components/Body';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Error from './components/Error';
-import RestaurantMenu from './components/RestaurantMenu';
+import RestaurantMenu from './components/restaurant/Menu';
 
 const Instamart = lazy(() => import(/* parcelChunkName: 'instamart' */'./components/instamart/Instamart'));
 const InstamartMenu = lazy(() => import(/* parcelChunkName: 'instamart' */ './components/instamart/InstamartMenu'));

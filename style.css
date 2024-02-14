@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html,
@@ -105,17 +106,17 @@ body {
       width: 300px;
       margin: 10px;
       cursor: pointer;
-            
+      transition: transform 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(0.98); /* Scale up on hover */
+      }
+
       & .restaurant-image {
         height: 200px;
         width: 100%;
         border-radius: 20px;
         object-fit: cover;
-        transition: transform 0.2s ease-in-out;
-
-        &:hover {
-          transform: scale(0.98); /* Scale up on hover */
-        }
       }
 
       & .details {
@@ -134,7 +135,7 @@ body {
   position: relative;
 
   & .discount-label {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 0.8rem;
     display: flex;
     gap: 10px;
     position: absolute;
@@ -142,7 +143,7 @@ body {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
   }
 }
@@ -152,11 +153,11 @@ body {
   flex-direction: column;
 
   & .restaurant-details {
-    height: 150px;
+    height: 180px;
     width: 60%;
     display: flex;
     justify-content: space-between;
-    padding: 30px 30px;
+    padding: 45px 30px;
     margin: auto;
     border-bottom: 2px solid #b7b7b7;
 
@@ -191,48 +192,62 @@ body {
   }
 
   & .restaurant-menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 50px;
 
-    & .item {
-      display: flex;
-      align-items: center;
+    & .category {
       width: 60%;
-      padding: 35px 50px;
-      border-bottom: 1px solid #d3d3d3;
+      margin: auto;
 
-      & .info {
-        width: 75%;
-        /* font-size: 1rem; */
+      & .category-title {
+        padding: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #b7b7b7;
 
-        & p:first-child {
-          margin-bottom: 10px;
-        }
-        & p:nth-child(3) {
-          color: rgba(40, 44, 63, 0.45);
-          margin-top: 15px;
+        & .title {
+          font-weight: bold;
+          cursor: pointer;
         }
       }
 
-      & .image {
-        width: 25%;
+      & .item {
+        display: flex;
+        align-items: center;
+        padding: 35px 50px;
+        border-bottom: 1px solid #d3d3d3;
 
-        & img {
-          height: 100px;
-          width: 120px;
-          background-color: lightblue;
-          object-fit: cover;
-          margin-left: 50px;
-          border-radius: 15px;
+        & .info {
+          width: 75%;
+
+          & p:first-child {
+            margin-bottom: 10px;
+          }
+          & p:nth-child(3) {
+            color: rgba(40, 44, 63, 0.45);
+            margin-top: 15px;
+          }
         }
 
-        & .dummy-image {
-          height: 100px;
-          width: 120px;
-          background-color: lightgray; /* Change this to the color you want for the dummy box */
-          margin-left: 50px;
-          border-radius: 15px;
+        & .image {
+          width: 25%;
+
+          & img {
+            height: 100px;
+            width: 120px;
+            background-color: lightblue;
+            object-fit: cover;
+            margin-left: 50px;
+            border-radius: 15px;
+          }
+
+          & .dummy-image {
+            height: 100px;
+            width: 120px;
+            background-color: lightgray;
+            margin-left: 50px;
+            border-radius: 15px;
+          }
         }
       }
     }
@@ -241,12 +256,12 @@ body {
 
 .instamart-container {
   padding: 50px;
-  
+
   & h3 {
     margin-left: 5rem;
     margin-bottom: 35px;
   }
-  
+
   & .categories {
     display: flex;
     flex-wrap: wrap;
@@ -255,7 +270,7 @@ body {
 
     & .grocery-item {
       text-align: center;
-      
+
       & p {
         padding: 12px;
       }
@@ -267,7 +282,6 @@ body {
   font-size: 20px;
   text-align: center;
   padding: 80px;
-  font-family:  monospace;
 }
 
 .offline {
@@ -275,5 +289,4 @@ body {
   display: flex;
   justify-content: center;
   padding: 100px;
-  font-family: cursive;
 }
