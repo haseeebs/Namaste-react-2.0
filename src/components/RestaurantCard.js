@@ -16,4 +16,25 @@ const RestaurantCard = (restaurant) => {
     )
 };
 
+export const withDiscountLable = (RestaurantCard) => {
+    return (props) => {
+        const { aggregatedDiscountInfoV3 } = props;
+        const hasDiscount = aggregatedDiscountInfoV3 && Object.keys(aggregatedDiscountInfoV3).length > 0;
+
+        return (
+            <>
+                <div className={`${hasDiscount ? 'with-discount' : ''}`}>
+                    <RestaurantCard {...props} />
+                    {hasDiscount && (
+                        <div className="discount-label">
+                            <p>{aggregatedDiscountInfoV3.header}</p>
+                            <p>{aggregatedDiscountInfoV3.subHeader}</p>
+                        </div>
+                    )}
+                </div>
+            </>
+        )
+    }
+}
+
 export default RestaurantCard;

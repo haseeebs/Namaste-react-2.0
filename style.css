@@ -130,6 +130,23 @@ body {
   }
 }
 
+.with-discount {
+  position: relative;
+
+  & .discount-label {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}
+
 .restaurant {
   display: flex;
   flex-direction: column;

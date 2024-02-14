@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withDiscountLable } from "./RestaurantCard";
 import Shimmer from "./shimmerUi/shimmer";
 import { Link } from "react-router-dom";
 import { RESTAURANTS_API } from "../utils/constant";
@@ -10,6 +10,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+
+  const RestaurantCardWithDiscount = withDiscountLable(RestaurantCard);
 
   useEffect(() => {
     fetchingData();
@@ -82,7 +84,11 @@ const Body = () => {
       <div className="restaurant-container">
         {filteredRestaurants.map((restaurant) => (
           <Link to={`/restaurant/${restaurant.info.id}`} key={restaurant.info.id}>
-            <RestaurantCard {...restaurant.info} />
+            {restaurant.info.aggregatedDiscountInfoV3 ? (
+              <RestaurantCardWithDiscount {...restaurant.info} />
+            ) : (
+              <RestaurantCard {...restaurant.info} />
+            )}
           </Link>
         ))}
       </div>
