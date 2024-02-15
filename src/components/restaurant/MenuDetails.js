@@ -1,17 +1,14 @@
-import { useState } from "react";
 import RestaurantMenuItem from "./MenuItem";
 
-const RestaurantMenuDetails = ({ category }) => {
-
-    const [showItem, setShowItem] = useState(false);
+const RestaurantMenuDetails = ({ category, showItem , setShowIndex }) => {
 
     const handleClick = () => {
-        setShowItem(!showItem);
+        setShowIndex();
     }
 
     return (
         <div key={category.card.card.title} className="category" onClick={handleClick}>
-            <div className="category-title" onClick={() => handleClick(category.card.card.title)}>
+            <div className="category-title">
                 <div className="title">{category.card.card.title} ({category.card.card.itemCards.length})</div>
                 <div>{showItem ? "⇓" : "⇘"}</div>
             </div>

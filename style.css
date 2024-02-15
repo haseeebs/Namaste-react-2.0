@@ -204,10 +204,10 @@ body {
         display: flex;
         justify-content: space-between;
         border-bottom: 1px solid #b7b7b7;
+        cursor: pointer;
 
         & .title {
           font-weight: bold;
-          cursor: pointer;
         }
       }
 

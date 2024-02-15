@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom"
 import Shimmer from "../shimmerUi/shimmer";
 import useMenuData from "../../utils/useMenuData";
@@ -11,6 +12,8 @@ const RestaurantMenu = () => {
     const restaurantData = useMenuData(restaurantId);
 
     const onlineStatus = useOnlineStatus();
+
+    const [showIndex, setShowIndex] = useState(null);
 
     if (onlineStatus === false) return <div className="offline">You are Offline please check your connection and try again</div>
 
@@ -51,8 +54,13 @@ const RestaurantMenu = () => {
             </div>
 
             <div className="restaurant-menu">
-                {categories.map((category) => (
-                    <RestaurantMenuDetails category={category} />
+                {/* Controlled component */}
+                {categories.map((category, index) => (
+                    <RestaurantMenuDetails
+                        category={category}
+                        showItem={index === showIndex ? true : false}
+                        setShowIndex={() => setShowIndex(index)}
+                    />
                 ))}
             </div>
         </div>
