@@ -59,7 +59,7 @@ const RestaurantMenu = () => {
                     <RestaurantMenuDetails
                         category={category}
                         showItem={index === showIndex ? true : false}
-                        setShowIndex={() => setShowIndex(index)}
+                        setShowIndex={() => setShowIndex((previousIndex) => previousIndex === index ? null : index)}
                     />
                 ))}
             </div>
