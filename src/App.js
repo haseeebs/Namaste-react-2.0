@@ -7,8 +7,10 @@ import Error from './components/Error';
 import RestaurantMenu from './components/restaurant/Menu';
 import Footer from './components/footer';
 import userContext from './utils/userContext';
-import { Provider } from 'react-redux'
-
+import { Provider } from 'react'
+import CartScreen from './screens/CartScreen';
+import { Provider } from 'react-redux';
+import store from './utils/store';
 
 const Instamart = lazy(() => import(/* parcelChunkName: 'instamart' */'./components/instamart/Instamart'));
 const InstamartMenu = lazy(() => import(/* parcelChunkName: 'instamart' */ './components/instamart/InstamartMenu'));
@@ -16,22 +18,19 @@ const InstamartMenu = lazy(() => import(/* parcelChunkName: 'instamart' */ './co
 const App = () => {
 
     const [user, setUser] = useState({
-        name: 'Logged in username',
-        email: 'loggedinuser@gmail.com'
+        name: 'Haseeb',
+        email: 'haseeb@gmail.com'
     });
 
     return (
         <>
-            <userContext.Provider value={{user, setUser}}>
-
-                <Header />
-                <Outlet />
-
-                <userContext.Provider value={{ user: { name: 'Haseeb' } }}>
+            <Provider store={store}>
+                <userContext.Provider value={{ user, setUser }}>
+                    <Header />
+                    <Outlet />
                     <Footer />
                 </userContext.Provider>
-
-            </userContext.Provider>
+            </Provider>
         </>
     )
 }
@@ -49,6 +48,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/restaurant/:restaurantId',
                 element: <RestaurantMenu />
+            },
+            {
+                path: '/cart',
+                element: <CartScreen />
             },
             {
                 path: '/instamart',
