@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard, { withDiscountLable } from "./restaurant/RestaurantCard";
-import Shimmer from "./shimmerUi/Shimmer";
+import RestaurantCard, { withDiscountLable } from "../components/restaurant/RestaurantCard";
+import Shimmer from "../components/shimmerUi/Shimmer";
 import { Link } from "react-router-dom";
 import { RESTAURANTS_API } from "../utils/constant";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import Footer from "../components/Footer";
 
-const Body = () => {
+const HomeScreen = () => {
 
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -33,6 +34,8 @@ const Body = () => {
 
     } catch (error) {
       console.error('Error while fetching restaurants data...', error);
+      fetchingData()
+      console.clear()
     }
   }
 
@@ -91,9 +94,10 @@ const Body = () => {
             )}
           </Link>
         ))}
+        <Footer />
       </div>
     </div>
   );
 };
 
-export default Body;
+export default HomeScreen;

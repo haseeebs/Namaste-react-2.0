@@ -1,7 +1,15 @@
+import { useDispatch } from "react-redux";
 import { MENU_ITEM_IMG } from "../../utils/constant"
+import { addToCart } from "../../slices/cartSlice";
 
 const RestaurantMenuItem = ({ item }) => {
 
+    const dispatch = useDispatch();
+
+    const handleAddItem = (item) => {
+        dispatch(addToCart(item));
+    }
+    
     return (
         <div className="item">
 
@@ -18,6 +26,10 @@ const RestaurantMenuItem = ({ item }) => {
                 ) : (
                     <div className="dummy-image"></div>
                 )}
+
+                <div className="add-button">
+                    <button onClick={() => handleAddItem(item)}>Add</button>
+                </div>
 
             </div>
         </div>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import Shimmer from "../shimmerUi/Shimmer";
 import useMenuData from "../../utils/useMenuData";
 import useOnlineStatus from "../../utils/useOnlineStatus";
-import RestaurantMenuDetails from "./MenuDetails";
+import RestaurantMenuDetails from "./RestaurantMenuDetails";
 
 const RestaurantMenu = () => {
 
@@ -57,6 +57,7 @@ const RestaurantMenu = () => {
                 {/* Controlled component */}
                 {categories.map((category, index) => (
                     <RestaurantMenuDetails
+                        key={category.card.card.title}
                         category={category}
                         showItem={index === showIndex ? true : false}
                         setShowIndex={() => setShowIndex((previousIndex) => previousIndex === index ? null : index)}

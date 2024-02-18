@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import userContext from "../utils/userContext";
 import { useSelector } from "react-redux";
 
 const Header = () => {
@@ -18,7 +16,6 @@ const Header = () => {
                     <Link to={'/'}><li>Home</li></Link>
                     <Link to={'/cart'}><li>Cart ({cartItems.length})</li></Link>
                     <Link to={'/instamart'}><strong><li>Instamart</li></strong></Link>
-
                 </ul>
             </div>
         </div>

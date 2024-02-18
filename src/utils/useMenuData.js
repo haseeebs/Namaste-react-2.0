@@ -17,6 +17,8 @@ const useMenuData = (restaurantId) => {
             setResData(json);
         } catch (error) {
             console.error('Error while fetching restaurant menu data...', error);
+            fetchData();
+            console.clear();
         }
     }
 

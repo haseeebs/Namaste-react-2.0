@@ -1,11 +1,10 @@
 import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
-import Body from './components/Body';
+import HomeScreen from './screens/HomeScreen';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Error from './components/Error';
 import RestaurantMenu from './components/restaurant/RestaurantMenu';
-import Footer from './components/footer';
 import CartScreen from './screens/CartScreen';
 import { Provider } from 'react-redux';
 import store from './utils/store';
@@ -20,7 +19,6 @@ const App = () => {
             <Provider store={store}>
                 <Header />
                 <Outlet />
-                <Footer />
             </Provider>
         </>
     )
@@ -34,7 +32,7 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Body />
+                element: <HomeScreen />
             },
             {
                 path: '/restaurant/:restaurantId',

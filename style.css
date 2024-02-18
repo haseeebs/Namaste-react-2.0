@@ -42,6 +42,15 @@ body {
   }
 }
 
+.clear-cart-button {
+  margin-top: 25px;
+}
+
+.clear-cart-length {
+  text-align: center;
+  padding: 50px;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -198,65 +207,84 @@ body {
 
   & .restaurant-menu {
     margin-top: 50px;
+  }
+}
 
-    & .category {
-      width: 60%;
-      margin: auto;
+& .category {
+  width: 60%;
+  margin: auto;
 
-      & .category-title {
-        padding: 20px;
-        margin-bottom: 15px;
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #b7b7b7;
+  & .category-title {
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #b7b7b7;
+    cursor: pointer;
+
+    & .title {
+      font-weight: bold;
+    }
+  }
+}
+
+& .item {
+  display: flex;
+  align-items: center;
+  padding: 35px 50px;
+  border-bottom: 1px solid #d3d3d3;
+
+  & .info {
+    width: 75%;
+
+    & p:first-child {
+      margin-bottom: 10px;
+    }
+    & p:nth-child(3) {
+      color: rgba(40, 44, 63, 0.45);
+      margin-top: 15px;
+    }
+  }
+
+  & .image {
+    position: relative;
+    width: 25%;
+
+    & img {
+      height: 100px;
+      width: 120px;
+      background-color: lightblue;
+      object-fit: cover;
+      margin-left: 50px;
+      border-radius: 15px;
+    }
+
+    & .dummy-image {
+      height: 100px;
+      width: 120px;
+      background-color: lightgray;
+      margin-left: 50px;
+      border-radius: 15px;
+    }
+
+    & .add-button {
+      position: absolute;
+      bottom: 0;
+      left: 72px;
+
+      & button {
+        color: darkgreen;
+        background-color: white;
+        padding: 8px 24px;
+        border: 1px solid #d4d5d9;
+        border-radius: 6px;
         cursor: pointer;
-
-        & .title {
-          font-weight: bold;
-        }
-      }
-
-      & .item {
-        display: flex;
-        align-items: center;
-        padding: 35px 50px;
-        border-bottom: 1px solid #d3d3d3;
-
-        & .info {
-          width: 75%;
-
-          & p:first-child {
-            margin-bottom: 10px;
-          }
-          & p:nth-child(3) {
-            color: rgba(40, 44, 63, 0.45);
-            margin-top: 15px;
-          }
-        }
-
-        & .image {
-          width: 25%;
-
-          & img {
-            height: 100px;
-            width: 120px;
-            background-color: lightblue;
-            object-fit: cover;
-            margin-left: 50px;
-            border-radius: 15px;
-          }
-
-          & .dummy-image {
-            height: 100px;
-            width: 120px;
-            background-color: lightgray;
-            margin-left: 50px;
-            border-radius: 15px;
-          }
-        }
       }
     }
   }
+}
+
+.cart-screen {
 }
 
 .instamart-container {
@@ -297,8 +325,9 @@ body {
 }
 
 .footer {
-    padding: 50px;
-    text-align: center;
+  margin-top: 15px;
+  padding: 5px;
+  text-align: center;
   & li {
     list-style-type: none;
   }
