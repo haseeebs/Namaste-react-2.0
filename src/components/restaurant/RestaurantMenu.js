@@ -19,10 +19,10 @@ const RestaurantMenu = () => {
 
     if (restaurantData === null) return <Shimmer />
 
-    const { name, costForTwoMessage, cuisines, avgRating, totalRatingsString } = restaurantData?.data?.cards[0]?.card?.card?.info;
+    const { name, costForTwoMessage, cuisines, avgRating, totalRatingsString } = restaurantData?.data?.cards[2]?.card?.card?.info;
 
     const categories =
-        restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        restaurantData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
             (category) => category?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
         );
 
