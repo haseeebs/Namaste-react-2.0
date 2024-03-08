@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { INSTAMART_API } from "../../utils/constant";
-import Shimmer from "../shimmerUi/Shimmer";
+import Shimmer from "../Shimmer";
 import { Link } from "react-router-dom";
 import InstamartCard from "./InstamartCard";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom"
-import Shimmer from "../shimmerUi/Shimmer";
+import Shimmer from "../Shimmer";
 import useMenuData from "../../utils/useMenuData";
 import useOnlineStatus from "../../utils/useOnlineStatus";
 import RestaurantMenuDetails from "./RestaurantMenuDetails";
