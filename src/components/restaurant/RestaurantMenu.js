@@ -19,17 +19,19 @@ const RestaurantMenu = () => {
 
     if (restaurantData === null) return <Shimmer />
 
-    const { name, costForTwoMessage, cuisines, avgRating, totalRatingsString } = restaurantData?.data?.cards[2]?.card?.card?.info;
+    const { name, costForTwoMessage, cuisines, avgRating, totalRatingsString } = restaurantData?.data?.cards[0]?.card?.card?.info;
 
     const categories =
         restaurantData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-            (category) => category?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-        );
+            (category) => category?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        ) || [];
 
-    // const additionalCategories =
-    //     restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-    //         (category) => category?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
-    //     );
+    const additionalCategories =
+        restaurantData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+            (category) => category?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" || "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+        ) || [];
+
+    const allCategories = [...categories, ...additionalCategories].filter(category => category?.card?.card?.['@type'] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
 
     return (
         <div className="restaurant">
@@ -55,10 +57,10 @@ const RestaurantMenu = () => {
 
             <div className="restaurant-menu">
                 {/* Controlled component */}
-                {categories.map((category, index) => (
+                {allCategories.map((allCategorie, index) => (
                     <RestaurantMenuDetails
-                        key={category.card.card.title}
-                        category={category}
+                        key={allCategorie.card.card.title}
+                        category={allCategorie}
                         showItem={index === showIndex ? true : false}
                         setShowIndex={() => setShowIndex((previousIndex) => previousIndex === index ? null : index)}
                     />
