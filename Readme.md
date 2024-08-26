@@ -2,8 +2,9 @@
 
 It's a modern web application designed to provide users with a seamless swiggy restaurant browsing experience. Incorporating advanced React concepts for a smooth and performant user experience.
 
-<video src="/public/video/Swiggy%20clone%20project%20video.mp4" controls="controls" width="800"></video>
+[![Watch the video](public/images/Screenshot%202024-08-26%20223926.jpg)](public/video/Swiggy%20clone%20project%20video.mp4)
 
+> Click the image above to watch the video.
 ## Features
 
 - **Dynamic Restaurant Listings**: Browse a comprehensive list of restaurants with real-time data fetching.
