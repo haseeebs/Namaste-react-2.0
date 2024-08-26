@@ -35,7 +35,7 @@ const HomeScreen = () => {
     } catch (error) {
       console.error('Error while fetching restaurants data...', error);
       fetchingData()
-      console.clear()
+      // console.clear()
     }
   }
 
